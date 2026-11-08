@@ -1,25 +1,72 @@
 {
   "expo": {
-    "name": "posee",
+    "name": "Posee",
     "slug": "posee",
+    "scheme": "posee",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0F1115",
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "app.posee.camera",
+      "supportsTablet": false,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
+      "package": "app.posee.camera",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#0F1115",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_MEDIA_VIDEO",
+        "android.permission.READ_MEDIA_AUDIO",
+        "android.permission.ACCESS_MEDIA_LOCATION"
+      ],
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Posee uses your camera to show a live preview with your chosen pose overlaid, so you can line up your shot. Nothing is recorded or uploaded.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false,
+          "barcodeScannerEnabled": false
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Posee lets you pick a photo from your library to use as a pose reference. It stays on your device.",
+          "savePhotosPermission": "Posee saves the photos you take to your Photos library. They stay on your device.",
+          "isAccessMediaLocationEnabled": false,
+          "granularPermissions": [
+            "photo"
+          ]
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Posee lets you pick a photo from your library to use as a pose reference. It stays on your device.",
+          "microphonePermission": false,
+          "cameraPermission": "Posee uses your camera to show a live preview with your chosen pose overlaid, so you can line up your shot. Nothing is recorded or uploaded."
+        }
+      ]
+    ]
   }
 }
